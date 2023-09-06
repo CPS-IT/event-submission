@@ -82,7 +82,10 @@ class LinkService implements ServiceInterface
         if (!t3::Environment()->isFrontend()) {
             $apiUri = $site->getBase() . '/api/service/appPageLink/' . $appPageId;
             // todo we should probably cache this result
-            $apiResponse = t3::Request()->GET($apiUri);
+            /* added . "?" to avoid bug in app/web/typo3conf/ext/nnhelpers/Classes/Utilities/Request.php:273  Undefined array key "query"
+                It is logged in internal_log_message as "ExceptionCode: 1 Message: Warning: Undefined array key "query""
+            */
+            $apiResponse = t3::Request()->GET($apiUri . "?");
             $data = json_decode($apiResponse['content'], true, 512, JSON_THROW_ON_ERROR);
             $this->assertValidPageLinkData($data);
 
