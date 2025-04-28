@@ -22,58 +22,17 @@
       "role": "Maintainer"
     }
   ],
-  "repositories": {
-    "event-submission": {
-      "type": "vcs",
-      "url": "git@github.com:CPS-IT/event-submission.git"
-    }
-  },
   "require": {
-    "typo3/cms-core": "^11.5",
-    "nng/nnrestapi": "^1.4",
-    "ramsey/uuid": "^4.0",
-    "georgringer/eventnews": "^5.0",
-    "blueways/bw-jsoneditor": "1.1"
-  },
-  "require-dev": {
-    "roave/security-advisories": "dev-latest",
-    "typo3/testing-framework": "^7",
-    "phpunit/phpunit": "^9"
+    "typo3/cms-core": "^12.4 || ^13.4"
   },
   "extra": {
     "typo3/cms": {
-      "extension-key": "event_submission",
-      "web-dir": ".Build/Web"
-    }
+      "extension-key": "event_submission"
+	}
   },
   "autoload": {
     "psr-4": {
       "Cpsit\\EventSubmission\\": "Classes"
     }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Cpsit\\EventSubmission\\Tests\\": "Tests"
-    }
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin",
-    "allow-plugins": {
-      "typo3/class-alias-loader": true,
-      "typo3/cms-composer-installers": true,
-      "composer/installers": true
-    }
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "mkdir -p .Build/log/coverage/",
-      "[ -L .Build/Web/typo3conf/ext/event_submission ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/event_submission"
-    ],
-    "test:unit": [
-      ".Build/bin/phpunit -c phpunit.xml --no-coverage"
-    ],
-    "test:unit:coverage": ".Build/bin/phpunit -c phpunit.xml"
   }
 }

@@ -7,10 +7,10 @@ $EM_CONF['event_submission'] = [
     'author' => 'Dirk Wenzel',
     'author_email' => 'd.wenzel@familie-redlich.de',
     'author_company' => 'CPS GmbH',
-    'version' => '1.4.6',
+    'version' => '2.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.99.99-0.0.0',
+            'typo3' => '12.4.0-13.99.99',
         ],
         'conflicts' => [],
         'suggests' => [],
