@@ -20,8 +20,9 @@ enum SubmissionStatus: int
     case eventCreated   = 3;  // event created after approval
     case updated        = 4;  // updated by frontend user, new approval required
     case withdrawn      = 5;  // proposal was withdrawn by the submitter
-    case published = 6;  // event has been published
+    case published      = 6;  // event has been published
     case error          = 7;  // something went wrong, might need intervention by editor
+    case rejected       = 8;  // something went wrong, might need intervention by editor
 
     public const UNKNOWN = self::unknown->value;
     public const NEW = self::new->value;
@@ -31,6 +32,8 @@ enum SubmissionStatus: int
     public const UPDATED = self::updated->value;
     public const WITHDRAWN = self::withdrawn->value;
     public const ERROR = self::error->value;
+    public const REJECTED = self::rejected->value;
+
 
     public static function status(): array
     {
