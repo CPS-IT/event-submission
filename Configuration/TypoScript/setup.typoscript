@@ -3,19 +3,25 @@
 #
 # CType: eventsubmission_app
 
-tt_content.eventsubmission_app.20 =< lib.contentElement
-tt_content.eventsubmission_app.20 {
-  templateRootPaths.200 = EXT:event_submission/Resources/Private/Templates/App/
-  layoutRootPaths.200 = EXT:event_submission/Resources/Private/Layouts/
-  view =< plugin.tx_eventsubmission.view
-  templateName = App
-  variables {
-    rootPid = TEXT
-    rootPid {
-      data = site:rootPageId
+tt_content.eventsubmission_app = FLUIDTEMPLATE
+tt_content.eventsubmission_app {
+    templateName = App
+    templateRootPaths {
+        200 = EXT:event_submission/Resources/Private/Templates/App/
     }
-  }
-  settings {
-    appPid = 0
-  }
+    layoutRootPaths {
+        200 = EXT:event_submission/Resources/Private/Layouts/
+    }
+    partialRootPaths {
+        200 = EXT:event_submission/Resources/Private/Partials/
+    }
+
+    variables {
+        rootPid = TEXT
+        rootPid.data = site:rootPageId
+    }
+
+    settings {
+        appPid = {$eventSubmission.appPid}
+    }
 }

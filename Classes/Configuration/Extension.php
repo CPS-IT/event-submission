@@ -29,7 +29,7 @@ class Extension
     public static function registerAdditionalRenderTypes():void
     {
         foreach (self::ADDITIONAL_RENDER_TYPES as $class) {
-            if(!in_array(RegistrableInterface::class, class_implements($class,), true)) {
+            if(!is_a($class, RegistrableInterface::class, true)) {
                 continue;
             }
 

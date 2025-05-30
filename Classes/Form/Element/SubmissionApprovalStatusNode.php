@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Form\Element;
 
@@ -31,22 +31,19 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  ***************************************************************/
 class SubmissionApprovalStatusNode extends AbstractFormElement implements RegistrableInterface
 {
-    use FormElementAttributesTrait,
-        RegistrableTrait;
+    use FormElementAttributesTrait;
+    use RegistrableTrait;
 
     public const NODE_ID = 1690799109;
     public const NODE_NAME = 'eventSubmissionApprovalStatus';
     public const NODE_PRIORITY = 30;
     public const DEFAULT_LANGUAGE_FILE = 'LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf';
 
-
-
     /**
      * @inheritDoc
      */
-    public function render()
+    public function render(): array
     {
-
         $fieldInformationResult = $this->renderFieldInformation();
         $fieldInformationHtml = $fieldInformationResult['html'];
         $resultArray = $this->mergeChildReturnIntoExistingResult(
