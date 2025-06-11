@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Cpsit\EventSubmission\Domain\Model;
 
-use Cpsit\EventSubmission\Service\TranslationService;
+use Cpsit\EventSubmission\Service\Legacy\TranslationService;
 use JsonException;
 
 class ApiResponse implements ApiResponseInterface

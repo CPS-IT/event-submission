@@ -6,31 +6,4 @@ services:
 
   Cpsit\EventSubmission\:
     resource: '../Classes/*'
-
-  _instanceof:
-    Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryInterface:
-      tags: [ 'EventSubmission.ApiResponseFactory' ]
-
-    Cpsit\EventSubmission\Factory\Job\JobFactoryInterface:
-      tags: [ 'EventSubmission.JobFactory' ]
-
-    Cpsit\EventSubmission\Validator\ValidatorInterface:
-      tags: [ 'EventSubmission.Validator' ]
-
-    Cpsit\EventSubmission\Service\ServiceInterface:
-      tags: [ 'EventSubmission.Service' ]
-
-  Cpsit\EventSubmission\Factory\ApiResponse\ApiResponseFactoryFactory:
-    public: true
-    arguments:
-      $factories: !tagged_iterator { tag: 'EventSubmission.ApiResponseFactory', index_by: 'ApiResponseFactory' }
-
-  Cpsit\EventSubmission\Factory\Job\JobFactory:
-    public: true
-    arguments:
-      $factories: !tagged_iterator { tag: 'EventSubmission.JobFactory', index_by: 'JobFactory' }
-
-  Cpsit\EventSubmission\Validator\ValidatorFactoryFactory:
-    public: true
-    arguments:
-      $factories: !tagged_iterator { tag: 'EventSubmission.Validator', index_by: 'Validator' }
+    exclude: ['../Classes/Type/*']

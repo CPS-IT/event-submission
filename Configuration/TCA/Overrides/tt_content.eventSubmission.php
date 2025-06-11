@@ -6,10 +6,6 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
     $ll = 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:';
     $contentElementType = 'eventsubmission_app';
 
-    /*
-     * tt_content event submission form element
-     */
-
     // Add the new content element to the CType select
     ExtensionManagementUtility::addTcaSelectItem(
         'tt_content',
@@ -17,9 +13,9 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
         [
             'label' => $ll . 'tt_content.CType.eventsubmission_app',
             'value' => $contentElementType,
-            'icon' => 'content-form', // Updated syntax for TYPO3 v12+
-            'group' => 'forms', // Optional: group it with other form elements
-            'description' => $ll . 'tt_content.CType.eventsubmission_app.description', // Optional description
+            'icon' => 'content-form',
+            'group' => 'forms',
+            'description' => $ll . 'tt_content.CType.eventsubmission_app.description',
         ],
         'bullets',
         'before'
@@ -53,44 +49,13 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
             'bodytext' => [
                 'label' => $ll . 'label.additionalFieldsConfiguration',
                 'config' => [
-                    'type' => 'json', // Updated for TYPO3 v12+
+                    'type' => 'json',
                     'behaviour' => [
                         'allowLanguageSynchronization' => true,
                     ],
                 ],
             ],
-            'pages' => [
-                'config' => [
-                    'type' => 'group',
-                    'allowed' => 'pages',
-                    'maxitems' => 1,
-                    'minitems' => 1,
-                    'size' => 1,
-                    'suggestOptions' => [
-                        'default' => [
-                            'searchWholePhrase' => true,
-                        ],
-                    ],
-                ],
-            ],
         ],
     ];
-
-    // Optional: Add to New Content Element Wizard
-    ExtensionManagementUtility::addPageTSConfig('
-        mod.wizards.newContentElement.wizardItems.forms {
-            elements {
-                ' . $contentElementType . ' {
-                    iconIdentifier = content-form
-                    title = ' . $ll . 'tt_content.CType.eventsubmission_app
-                    description = ' . $ll . 'tt_content.CType.eventsubmission_app.description
-                    tt_content_defValues {
-                        CType = ' . $contentElementType . '
-                    }
-                }
-            }
-            show := addToList(' . $contentElementType . ')
-        }
-    ');
 
 })();

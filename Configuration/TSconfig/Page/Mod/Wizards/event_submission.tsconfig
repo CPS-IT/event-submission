@@ -1,0 +1,13 @@
+mod.wizards.newContentElement.wizardItems.forms {
+  elements {
+    eventsubmission_app {
+      iconIdentifier = content-form
+      title = LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf:tt_content.CType.eventsubmission_app
+      description = LLL:EXT:event_submission/Resources/Private/Language/locallang_db.xlf:tt_content.CType.eventsubmission_app
+      tt_content_defValues {
+        CType = eventsubmission_app
+      }
+    }
+  }
+  show := addToList(eventsubmission_app)
+}
