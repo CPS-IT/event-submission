@@ -14,12 +14,14 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Exception;
 use Symfony\Component\Mime\Address;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class EventApiService extends BaseApiService
 {
+    private ?JobRepository $jobRepository = null;
+
     public function __construct(
         private readonly EventValidator $eventValidator,
-        private readonly JobRepository $jobRepository,
         private readonly EmailService $emailService,
         private readonly UrlGenerator $urlGenerator
     )
@@ -90,7 +92,7 @@ class EventApiService extends BaseApiService
     private function fetchEvent(int|string $id): array
     {
         /** @var Job $job */
-        $job = $this->jobRepository->findBy(['uuid' => $id])->current();
+        $job = $this->getJobRepository()->findBy(['uuid' => $id])->current();
 
         if ($id <= 0) {
             return throw new Exception('Event ID invalid');
@@ -113,8 +115,8 @@ class EventApiService extends BaseApiService
     {
         $this->validateEventData($data);
         $job = Job::makeFromData($data);
-        $this->jobRepository->add($job);
-        $this->jobRepository->flush();
+        $this->getJobRepository()->add($job);
+        $this->getJobRepository()->flush();
 
         if (!empty($job->getUid()) && !empty($job->getUuid())) {
 
@@ -152,13 +154,13 @@ class EventApiService extends BaseApiService
         }
 
         /** @var Job $job */
-        $job = $this->jobRepository->findBy(['uuid' => $id])->current();
+        $job = $this->getJobRepository()->findBy(['uuid' => $id])->current();
         if ($job) {
             $updateData = $job->getPayloadDecoded() + $data;
             $this->validateEventData($updateData);
             $job->setPayload(json_encode($updateData));
-            $this->jobRepository->update($job);
-            $this->jobRepository->flush();
+            $this->getJobRepository()->update($job);
+            $this->getJobRepository()->flush();
             return ['code' => 200,'data' => $updateData + ['id' => $job->getUuid()]];
         }
 
@@ -177,11 +179,11 @@ class EventApiService extends BaseApiService
         }
 
         /** @var Job $job */
-        $job = $this->jobRepository->findBy(['uuid' => $id])->current();
+        $job = $this->getJobRepository()->findBy(['uuid' => $id])->current();
         if ($job) {
             $job->setStatus(SubmissionStatus::withdrawn->value);
-            $this->jobRepository->update($job);
-            $this->jobRepository->flush();
+            $this->getJobRepository()->update($job);
+            $this->getJobRepository()->flush();
 
             return ['code' => 200,'data' => ['id' => $job->getUuid()]];
         }
@@ -200,10 +202,10 @@ class EventApiService extends BaseApiService
             return throw new Exception('Event ID invalid');
         }
 
-        $job = $this->jobRepository->findBy(['uuid' => $id])->current();
+        $job = $this->getJobRepository()->findBy(['uuid' => $id])->current();
         if ($job) {
-            $this->jobRepository->remove($job);
-            $this->jobRepository->flush();
+            $this->getJobRepository()->remove($job);
+            $this->getJobRepository()->flush();
 
             return ['code' => 900, 'data' => ['id' => $id]];
         }
@@ -217,5 +219,10 @@ class EventApiService extends BaseApiService
         if (!empty($validatorResult)) {
             throw new Exception('Invalid data: ' . implode(',', $validatorResult));
         }
+    }
+
+    private function getJobRepository(): JobRepository
+    {
+        return $this->jobRepository ??= GeneralUtility::makeInstance(JobRepository::class);
     }
 }

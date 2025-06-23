@@ -34,5 +34,6 @@ class ApiMiddleware extends BaseApiMiddleware
         // boot up TypoScript, we want for api always english site
         $request = $this->typoScriptParser->boot(request: $request, languageUid: 1);
         return $this->apiController->process($request);
+
     }
 }
