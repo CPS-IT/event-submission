@@ -33,6 +33,11 @@ class JobRepository extends Repository
         $this->setDefaultQuerySettings($querySettings);
     }
 
+    public function flush(): void
+    {
+        $this->persistenceManager->persistAll();
+    }
+
     /**
      * Find submissions (Jobs) where the created event is past its end date.
      *

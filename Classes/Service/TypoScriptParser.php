@@ -16,10 +16,10 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 class TypoScriptParser
 {
-    public function __construct(
-        private readonly SiteFinder $siteFinder,
-        private readonly Context $context
-    ) {}
+    private ?Context $context = null;
+    private ?SiteFinder $siteFinder = null;
+
+    public function __construct() {}
 
     /**
      * Boot the request with site, language, frontend.user, frontend.controller & frontend.typoscript attributes
@@ -31,6 +31,9 @@ class TypoScriptParser
      */
     public function boot(ServerRequestInterface $request, ?int $pageUid = null, ?int $languageUid = null): ServerRequestInterface
     {
+        $this->context ??= GeneralUtility::makeInstance(Context::class);
+        $this->siteFinder ??= GeneralUtility::makeInstance(SiteFinder::class);
+
         $site = $this->resolveSite($request);
         $request = $request->withAttribute('site', $site);
 

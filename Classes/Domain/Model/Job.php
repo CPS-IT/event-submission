@@ -13,6 +13,8 @@ declare(strict_types=1);
 namespace Cpsit\EventSubmission\Domain\Model;
 
 use Cpsit\EventSubmission\Type\SubmissionStatus;
+use Cpsit\EventSubmission\Type\UUID\UuidGenerator;
+use DateTime;
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
@@ -46,8 +48,8 @@ class Job extends AbstractEntity
     protected bool $isApiError = false;
     protected bool $isDone = false;
     protected bool $approved = false;
-    protected ?\DateTime $jobTriggeredDateTime = null;
-    protected ?\DateTime $requestDateTime = null;
+    protected ?DateTime $jobTriggeredDateTime = null;
+    protected ?DateTime $requestDateTime = null;
     protected ?bool $isInternalError = null;
     /**
      * @var int<SubmissionStatus>
@@ -58,6 +60,18 @@ class Job extends AbstractEntity
      * @var \GeorgRinger\News\Domain\Model\News|null
      */
     protected ?News $event = null;
+
+    public static function makeFromData(array $data): Job
+    {
+        $job = new static();
+        unset($data['validationHash']);
+        $job->setUuid(UuidGenerator::generate());
+        $job->setEmail($data['email']);
+        $job->setRequestDateTime(new DateTime());
+        $job->setPayload(json_encode($data));
+        $job->setStatus(SubmissionStatus::new->value);
+        return $job;
+    }
 
     public function getUuid(): string
     {
@@ -79,12 +93,12 @@ class Job extends AbstractEntity
         $this->email = $email;
     }
 
-    public function getRequestDateTime(): ?\DateTime
+    public function getRequestDateTime(): ?DateTime
     {
         return $this->requestDateTime;
     }
 
-    public function setRequestDateTime(?\DateTime $requestDateTime): void
+    public function setRequestDateTime(?DateTime $requestDateTime): void
     {
         $this->requestDateTime = $requestDateTime;
     }
@@ -130,12 +144,12 @@ class Job extends AbstractEntity
         $this->isApiError = $isApiError;
     }
 
-    public function getJobTriggeredDateTime(): ?\DateTime
+    public function getJobTriggeredDateTime(): ?DateTime
     {
         return $this->jobTriggeredDateTime;
     }
 
-    public function setJobTriggeredDateTime(?\DateTime $jobTriggeredDateTime): void
+    public function setJobTriggeredDateTime(?DateTime $jobTriggeredDateTime): void
     {
         $this->jobTriggeredDateTime = $jobTriggeredDateTime;
     }

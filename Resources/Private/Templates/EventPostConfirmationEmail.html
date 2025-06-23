@@ -1,51 +1,57 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      data-namespace-typo3-fluid="true">
-<f:layout name="MailLayout"/>
-<f:section name="Main">
-    <!-- Main email container -->
-    <table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#f0f0f0">
-        <tr>
-            <td align="center" valign="top">
-                <table cellpadding="0" cellspacing="0" border="0" width="600"
-                       style="max-width: 600px; background-color: #fff; border: 1px solid #ddd;">
-                    <!-- Header -->
-                    <tr>
-                        <td align="left" valign="top" bgcolor="#fff" style="padding: 20px 0;">
+<!DOCTYPE html>
+<html lang="{f:if(condition: '{htmlLang}', then: '{htmlLang}', else: 'en')}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{f:if(condition: '{mailTitle}', then: '{mailTitle}', else: 'Email')}</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f0f0f0; color: #333;">
 
-                            <f:if condition="{eventSubmission.mail.logoImage}">
-                                <f:image src="{eventSubmission.mail.logoImage}" absolute="1" />
-                            </f:if>
-                        </td>
-                    </tr>
-                    <!-- Content -->
-                    <tr>
-                        <td align="left" valign="top" style="padding: 30px;">
-                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.greeting', event_submission: 'event_submission')}</p>
-                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.1', event_submission: 'event_submission')}</p>
-                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.2', event_submission: 'event_submission')}</p>
-                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.3', event_submission: 'event_submission')}</p>
-                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.4', event_submission: 'event_submission')}</p>
+<!-- Main email container -->
+<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#f0f0f0">
+    <tr>
+        <td align="center" valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" width="600"
+                   style="max-width: 600px; background-color: #fff; border: 1px solid #ddd;">
+                <!-- Header -->
+                <tr>
+                    <td align="left" valign="top" bgcolor="#fff" style="padding: 20px 0;">
 
-                            <!-- Call-to-Action Button -->
-                            <p>
-                                <a href="{editUrl}" target="_blank"
-                                   style="background-color: #1b2b3a; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">
-                                    {f:translate(key: 'user.eventPostConfirmation.mail.confirmation.button', event_submission: 'event_submission')}
-                                </a>
-                            </p>
+                        <f:if condition="{eventSubmission.mail.logoImage}">
+                            <f:image src="{eventSubmission.mail.logoImage}" absolute="1" />
+                        </f:if>
+                    </td>
+                </tr>
+                <!-- Content -->
+                <tr>
+                    <td align="left" valign="top" style="padding: 30px;">
+                        <p>{f:translate(key: 'user.eventPostConfirmation.mail.greeting', extensionName: 'event_submission')}</p>
+                        <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.1', extensionName: 'event_submission')}</p>
+                        <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.2', extensionName: 'event_submission')}</p>
+                        <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.3', extensionName: 'event_submission')}</p>
+                        <p>{f:translate(key: 'user.eventPostConfirmation.mail.message.4', extensionName: 'event_submission')}</p>
 
-                            <p>{f:translate(key: 'user.eventPostConfirmation.mail.signature', event_submission: 'event_submission')}</p>
-                        </td>
-                    </tr>
-                    <!-- Footer -->
-                    <tr>
-                        <td align="center" valign="top" bgcolor="#1b2b3a" style="padding: 20px 0;">
-                            <p style="color: #ffffff;">{f:translate(key: 'user.eventPostConfirmation.mail.footer', event_submission: 'event_submission')}</p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-</f:section>
+                        <!-- Call-to-Action Button -->
+                        <p>
+                            <a href="{editUrl}" target="_blank"
+                               style="background-color: #1b2b3a; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">
+                                {f:translate(key: 'user.eventPostConfirmation.mail.confirmation.button', extensionName: 'event_submission')}
+                            </a>
+                        </p>
+
+                        <p>{f:translate(key: 'user.eventPostConfirmation.mail.signature', extensionName: 'event_submission')}</p>
+                    </td>
+                </tr>
+                <!-- Footer -->
+                <tr>
+                    <td align="center" valign="top" bgcolor="#1b2b3a" style="padding: 20px 0;">
+                        <p style="color: #ffffff;">{f:translate(key: 'user.eventPostConfirmation.mail.footer', extensionName: 'event_submission')}</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
 </html>
