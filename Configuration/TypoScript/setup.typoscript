@@ -23,5 +23,6 @@ tt_content.eventsubmission_app {
 
     settings {
         appPid = {$eventSubmission.appPid}
+        storageListPid = {$eventSubmission.storagePageUid}
     }
 }
