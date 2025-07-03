@@ -8,9 +8,9 @@ use Cpsit\EventSubmission\Form\RegistrableInterface;
 use Cpsit\EventSubmission\Form\RegistrableTrait;
 use Cpsit\EventSubmission\Type\SubmissionStatus;
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageRendererResolver;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /***************************************************************
@@ -95,20 +95,11 @@ class SubmissionApprovalStatusNode extends AbstractFormElement implements Regist
         $flashMessage = GeneralUtility::makeInstance(FlashMessage::class,
             $message,
             $header,
-            AbstractMessage::INFO,
+            ContextualFeedbackSeverity::INFO,
             false
         );
         return GeneralUtility::makeInstance(FlashMessageRendererResolver::class)
             ->resolve()
             ->render([$flashMessage]);
-    }
-
-    protected function renderEventEditLink(): string
-    {
-        $row = $this->data['databaseRow'];
-
-        if($row[Job::FIELD_IS_DONE] !== 1) {
-            return '';
-        }
     }
 }
