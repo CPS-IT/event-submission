@@ -14,7 +14,6 @@ return [
         'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'sortby' => 'crdate',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -78,10 +77,8 @@ return [
             'label' => $ll . 'tx_eventsubmission_domain_model_job.request_date_time',
             'exclude' => true,
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 10,
-                'eval' => 'datetime',
+                'type' => 'datetime',
+                'format' => 'datetime',
                 'default' => 0,
                 'readOnly' => true,
             ],
@@ -112,8 +109,8 @@ return [
                 'renderType' => 'checkboxLabeledToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
+                        'value' => '',
                         'labelChecked' => 'Success',
                         'labelUnchecked' => 'Error',
                         'invertStateDisplay' => true,
@@ -126,10 +123,8 @@ return [
             'exclude' => true,
             'label' => $ll . 'tx_eventsubmission_domain_model_job.job_triggered_date_time',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'size' => 10,
-                'eval' => 'datetime',
+                'type' => 'datetime',
+                'format' => 'datetime',
                 'default' => 0,
                 'readOnly' => true,
             ],
@@ -142,8 +137,8 @@ return [
                 'renderType' => 'checkboxLabeledToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
+                        'value' => '',
                         'labelChecked' => 'Done',
                         'labelUnchecked' => 'not done',
                     ],
@@ -169,8 +164,8 @@ return [
                 'renderType' => 'checkboxLabeledToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
+                        'value' => '',
                         'labelChecked' => 'Successful',
                         'labelUnchecked' => 'Error',
                         'invertStateDisplay' => true,
@@ -193,8 +188,8 @@ return [
                 'renderType' => 'checkboxLabeledToggle',
                 'items' => [
                     [
-                        1 => '',
-                        0 => '',
+                        'label' => '',
+                        'value' => '',
                         'labelChecked' => $ll . 'tx_eventsubmission_domain_model_job.approved.1',
                         'labelUnchecked' => $ll . 'tx_eventsubmission_domain_model_job.approved.0',
                     ],
@@ -254,44 +249,44 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        $ll . 'label.status.unknown',
-                        SubmissionStatus::UNKNOWN,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-unknown.svg'
+                        'label' => $ll . 'label.status.unknown',
+                        'value' => SubmissionStatus::UNKNOWN,
+                        'icon' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-unknown.svg'
                     ],
                     [
-                        $ll . 'label.status.new',
-                        SubmissionStatus::NEW,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-new.svg'
+                        'label' => $ll . 'label.status.new',
+                        'value' => SubmissionStatus::NEW,
+                        'icon' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-new.svg'
                     ],
                     [
-                        $ll . 'label.status.approved',
-                        SubmissionStatus::APPROVED,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-approved.svg'
+                        'label' => $ll . 'label.status.approved',
+                        'value' => SubmissionStatus::APPROVED,
+                        'icon' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-approved.svg'
                     ],
                     [
-                        $ll . 'label.status.eventCreated',
-                        SubmissionStatus::EVENT_CREATED,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-eventCreated.svg'
+                        'label' => $ll . 'label.status.eventCreated',
+                        'value' => SubmissionStatus::EVENT_CREATED,
+                        'icon' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-eventCreated.svg'
                     ],
                     [
-                        $ll . 'label.status.published',
-                        SubmissionStatus::EVENT_PUBLISHED,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-published.svg'
+                        'label' => $ll . 'label.status.published',
+                        'value' => SubmissionStatus::EVENT_PUBLISHED,
+                        'icon' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-published.svg'
                     ],
                     [
-                        $ll . 'label.status.updated',
-                        SubmissionStatus::UPDATED,
-                        "EXT:event_submission/Resources/Public/Icons/event-submission-job-updated.svg"
+                        'label' => $ll . 'label.status.updated',
+                        'value' => SubmissionStatus::UPDATED,
+                        'icon' => "EXT:event_submission/Resources/Public/Icons/event-submission-job-updated.svg"
                     ],
                     [
-                        $ll . 'label.status.withdrawn',
-                        SubmissionStatus::WITHDRAWN,
-                        "EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg"
+                        'label' => $ll . 'label.status.withdrawn',
+                        'value' => SubmissionStatus::WITHDRAWN,
+                        'icon' => "EXT:event_submission/Resources/Public/Icons/event-submission-job-withdrawn.svg"
                     ],
                     [
-                        $ll . 'label.status.error',
-                        SubmissionStatus::ERROR,
-                        'EXT:event_submission/Resources/Public/Icons/event-submission-job-error.svg'
+                        'label' => $ll . 'label.status.error',
+                        'value' => SubmissionStatus::ERROR,
+                        'icon' => 'EXT:event_submission/Resources/Public/Icons/event-submission-job-error.svg'
                     ],
                 ]
             ]

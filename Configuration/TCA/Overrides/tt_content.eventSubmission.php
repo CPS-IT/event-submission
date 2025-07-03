@@ -50,9 +50,6 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
                 'label' => $ll . 'label.additionalFieldsConfiguration',
                 'config' => [
                     'type' => 'json',
-                    'behaviour' => [
-                        'allowLanguageSynchronization' => true,
-                    ],
                 ],
             ],
         ],
