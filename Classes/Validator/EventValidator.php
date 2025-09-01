@@ -6,13 +6,13 @@ use DateTimeZone;
 
 class EventValidator
 {
-    private const array requiredFields = [
+    private const requiredFields = [
         'language',
         'email',
         'is_cop_event',
         'event_mode'
     ];
-    private const array optionalFields = [
+    private const optionalFields = [
         'external_reference',
         'title',
         'teaser',

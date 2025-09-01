@@ -22,7 +22,7 @@ class Extension
     public const VENDOR_NAME = 'Cpsit';
     public const EXTENSION_KEY = 'event_submission';
 
-    public const array ADDITIONAL_RENDER_TYPES = [
+    public const ADDITIONAL_RENDER_TYPES = [
         SubmissionPayloadDisplayNode::class,
         SubmissionApprovalStatusNode::class
     ];
