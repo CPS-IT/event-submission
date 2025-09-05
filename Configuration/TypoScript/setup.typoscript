@@ -1,26 +1,20 @@
-# Event Submission Form
-# Displays a form for event submission
-#
-# CType: eventsubmission_app
-
-tt_content.eventsubmission_app = FLUIDTEMPLATE
-tt_content.eventsubmission_app {
-    templateName = App
-    templateRootPaths {
-        200 = EXT:event_submission/Resources/Private/Templates/App/
+# Event Submission plugin configuration
+plugin.tx_eventsubmission_app {
+    view {
+        templateRootPaths {
+            0 = EXT:event_submission/Resources/Private/Templates/
+            200 = EXT:event_submission/Resources/Private/Templates/
+        }
+        layoutRootPaths {
+            0 = EXT:event_submission/Resources/Private/Layouts/
+            200 = EXT:event_submission/Resources/Private/Layouts/
+        }
+        partialRootPaths {
+            0 = EXT:event_submission/Resources/Private/Partials/
+            200 = EXT:event_submission/Resources/Private/Partials/
+        }
     }
-    layoutRootPaths {
-        200 = EXT:event_submission/Resources/Private/Layouts/
-    }
-    partialRootPaths {
-        200 = EXT:event_submission/Resources/Private/Partials/
-    }
-
-    variables {
-        rootPid = TEXT
-        rootPid.data = site:rootPageId
-    }
-
+    
     settings {
         appPid = {$eventSubmission.appPid}
         storageListPid = {$eventSubmission.storagePageUid}

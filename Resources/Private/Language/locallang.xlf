@@ -110,6 +110,12 @@
 			<trans-unit id="user.eventPostConfirmation.mail.footer">
 				<source>International Climate Initiative (IKI)</source>
 			</trans-unit>
+			<trans-unit id="plugin.event_submission_app.title">
+				<source>Event Submission Form</source>
+			</trans-unit>
+			<trans-unit id="plugin.event_submission_app.description">
+				<source>Displays a form for event submission</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
