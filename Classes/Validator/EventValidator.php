@@ -9,7 +9,6 @@ class EventValidator
     private const requiredFields = [
         'language',
         'email',
-        'is_cop_event',
         'event_mode'
     ];
     private const optionalFields = [
@@ -22,6 +21,7 @@ class EventValidator
         'location_short_title',
         'timezone',
         'datetime',
+        'is_cop_event',
         'event_end',
         'organizer_simple',
         'registration_link',

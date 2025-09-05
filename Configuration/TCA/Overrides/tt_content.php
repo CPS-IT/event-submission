@@ -22,15 +22,16 @@ defined('TYPO3') or die();
         $GLOBALS['TCA']['tt_content']['types'][$pluginSignature]['showitem']
     );
 
-    // Configure bodytext field
+    // Configure bodytext field with JSON editor
     $GLOBALS['TCA']['tt_content']['types'][$pluginSignature]['columnsOverrides']['bodytext'] = [
         'label' => $ll . 'label.additionalFieldsConfiguration',
         'config' => [
             'type' => 'text',
-            'cols' => 40,
-            'rows' => 15,
-            'enableRichtext' => false,
+            'renderType' => 'codeEditor',
             'format' => 'json',
+            'rows' => 15,
+            'cols' => 50,
+            'enableRichtext' => false,
         ],
     ];
 })();

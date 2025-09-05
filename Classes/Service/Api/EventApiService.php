@@ -198,7 +198,7 @@ class EventApiService extends BaseApiService
      */
     private function deleteEvent(int|string $id): array
     {
-        if ($id <= 0 || UuidValidator::validate($id, true)) {
+        if ($id <= 0 || !UuidValidator::validate($id, true)) {
             return throw new Exception('Event ID invalid');
         }
 

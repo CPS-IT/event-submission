@@ -8,6 +8,7 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Throwable;
 use TYPO3\CMS\Core\Mail\MailerInterface;
+use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -52,10 +53,11 @@ class EmailService
 
     private function generateDefaultSender(ServerRequestInterface $request): ?Address
     {
-        /** @var FrontendTypoScript $typoScript */
-        $typoScript = $request->getAttribute('frontend.typoscript');
-        $mail = $typoScript?->getFlatSettings()['mail.senderHeader.from'] ?? null;
-        $name = $typoScript?->getFlatSettings()['mail.senderHeader.fromName'] ?? null;
+        /** @var Site $site */
+        $site = $request->getAttribute('site');
+        $senderConfig = $site->getConfiguration()['mail']['senderHeader'] ?? [];
+        $mail = $senderConfig['from'] ?? null;
+        $name = $senderConfig['fromName'] ?? null;
         if (!$mail) {
             return null;
         }

@@ -62,6 +62,7 @@ class TypoScriptParser
         if ($request->getAttribute('frontend.controller') !== null) {
             return $request->getAttribute('frontend.controller');
         } else {
+            /** @var TypoScriptFrontendController $controller */
             $controller = GeneralUtility::makeInstance(
                 TypoScriptFrontendController::class,
                 $this->context,
@@ -70,7 +71,6 @@ class TypoScriptParser
                 $this->generatePageArgument($site, $pageUid),
                 $frontendUser
             );
-            $controller->determineId($request);
         }
 
         return $controller;
@@ -83,14 +83,6 @@ class TypoScriptParser
      */
     private function initTypoScript(ServerRequestInterface $request, TypoScriptFrontendController $controller): ServerRequestInterface
     {
-        if ($request->getAttribute('frontend.typoscript') instanceof FrontendTypoScript) {
-            return $request;
-        }
-
-        try {
-            return $controller->getFromCache($request);
-        } catch (Throwable) {}
-
         return $request;
     }
 
